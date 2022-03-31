@@ -1,4 +1,3 @@
-
 local EventFrame = CreateFrame("frame", "EventFrame")
 EventFrame:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
 EventFrame:SetScript("OnEvent", function(self, event, ...)
