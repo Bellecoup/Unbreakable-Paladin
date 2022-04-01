@@ -1,10 +1,6 @@
-local EventFrame = CreateFrame("frame", "EventFrame")
-EventFrame:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
-EventFrame:SetScript("OnEvent", function(self, event, ...)
-	
-	if(event == "PLAYER_EQUIPMENT_CHANGED") then
-	--Initializing flag to check if Holy Shield buff is active
-	HShield = false
+local function AvoidanceCheck()
+--Initializing flag to check if Holy Shield buff is active
+	local HShield = false
 		--Loop to check all active buffs
 		for x=1,40,1 do
 			--Fetching information on currently selected buff
@@ -23,5 +19,18 @@ EventFrame:SetScript("OnEvent", function(self, event, ...)
 		else
 			print("Avoidance is at:", (GetDodgeChance()+GetBlockChance()+GetParryChance()+5+(GetCombatRating(CR_DEFENSE_SKILL)*150/355+20)*0.04)+30)
 		end
+end
+
+SlashCmdList['UNBREAKABLE'] = function(msg)
+	AvoidanceCheck()
+end
+SLASH_UNBREAKABLE1 = '/unbp'
+
+local EventFrame = CreateFrame("frame", "EventFrame")
+EventFrame:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
+EventFrame:SetScript("OnEvent", function(self, event, ...)
+	
+	if(event == "PLAYER_EQUIPMENT_CHANGED") then
+	AvoidanceCheck()
 	end
 end)
