@@ -27,7 +27,7 @@ local function AvoidanceCheck()
 			--Fetching information on currently selected buff
 			local _,_,_,_,_,_,_,_,_,s= UnitAura("player", x)
 			--Checking if the current buff is Holy Shield
-			if(s==27179) then
+			if(s==20927) then
 				HShield = true
 				break
 			else
